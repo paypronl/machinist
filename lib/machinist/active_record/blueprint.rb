@@ -10,7 +10,7 @@ module Machinist::ActiveRecord
     
     def force_make!(attributes = {})
       object = make(attributes)
-      object.save(false)
+      object.save(validate: false)
       object.reload
     end
 
