@@ -10,7 +10,13 @@ module Machinist::ActiveRecord
     
     def force_make!(attributes = {})
       object = make(attributes)
-      object.save(validate: false)
+
+      if ActiveRecord::VERSION::MAJOR > 2
+        object.save(validate: false)
+      else
+        object.save(false)
+      end
+
       object.reload
     end
 
